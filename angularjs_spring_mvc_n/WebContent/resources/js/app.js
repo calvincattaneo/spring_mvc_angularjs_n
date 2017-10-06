@@ -1,7 +1,25 @@
-
+//configuraÃ§Ã£o do mÃ³dulo
 var app = angular.module('loja', ['ngRoute','ngResource','ngAnimate']);
 
-
+//configurando rotas
+app.config(function($routeProvider, $provide, $httpProvider, $locationProvider) {
+	
+	$routeProvider.when("/clientelist", {
+		controller: "clienteController",
+		templateUrl: "cliente/list.html"
+	})//listar
+	.when("/cliente/:id", {
+		controller: "clienteController",
+		templateUrl: "cliente/cadastro.html"
+	})//editar
+	.when("/cliente/cadastro", {
+		controller: "clienteController",
+		templateUrl: "cliente/cadastro.html"
+	})//novo
+	.otherwise({
+		redirectTo: "/"
+	});
+});
 
 
 
@@ -100,7 +118,7 @@ app.controller("filterController", function($scope) {
 
 // criacao do service
 app.factory("UserService", function() {
-	var users = ["João","Ivete", "Alex", "Paulo"];// viria do banco de dados
+	var users = ["Joï¿½o","Ivete", "Alex", "Paulo"];// viria do banco de dados
 	
 	return {
 		
@@ -115,7 +133,7 @@ app.factory("UserService", function() {
 }); 
 
 
-// Criação do controller
+// Criaï¿½ï¿½o do controller
 primeiroUserController = app.controller("primeiroUserController", function($scope, UserService) {
 	$scope.primeiro =  UserService.primeiro();
 });
@@ -133,7 +151,7 @@ todosUserController = app.controller("todosUserController", function($scope, Use
 	$scope.todos =  UserService.all();
 });
 
-// ativando a injeção de depencia
+// ativando a injeï¿½ï¿½o de depencia
 todosUserController.$inject = ["$scope", "UserService"];
 
 
@@ -519,11 +537,11 @@ app.controller('namesCtrl4', function($scope) {
 
 
 /*
-// Config - > Use este método para registrar o trabalho que  precisa ser executado no carregamento do módulo.
+// Config - > Use este mï¿½todo para registrar o trabalho que  precisa ser executado no carregamento do mï¿½dulo.
 
-//when -> Adiciona uma nova definição de rota ao serviço $ route.
+//when -> Adiciona uma nova definiï¿½ï¿½o de rota ao serviï¿½o $ route.
 
-// otherwise - > Define a definição da rota que será usada na mudança de rota quando nenhuma outra definição de rota for igualada.
+// otherwise - > Define a definiï¿½ï¿½o da rota que serï¿½ usada na mudanï¿½a de rota quando nenhuma outra definiï¿½ï¿½o de rota for igualada.
 
 
 app.config(function($routeProvider) {
@@ -534,7 +552,7 @@ app.config(function($routeProvider) {
 	.otherwise({redirectTo: "/"});
 });
 
-//Registro de trabalho que deve ser realizado quando o injetor é feito carregando todos os módulos.
+//Registro de trabalho que deve ser realizado quando o injetor ï¿½ feito carregando todos os mï¿½dulos.
 app.run(function($rootScope) {
 		$rootScope.frutas = ['bana', 'abacaxi'];
 });
@@ -544,9 +562,9 @@ app.controller('listController', ['$scope', '$routeParams', '$rootScope' ,'$rout
 	
 }]);
 
-//$scope é o escopo da aplicação html
+//$scope ï¿½ o escopo da aplicaï¿½ï¿½o html
 //$location redirecionamento entre rotas
-//$routeParams são os parametros repassador pela url
+//$routeParams sï¿½o os parametros repassador pela url
 app.controller('editController', ['$scope', '$routeParams', '$rootScope' ,'$route' ,'$location', 
               function editController($scope, $routeParams, $rootScope ,$route ,$location) {
 	
